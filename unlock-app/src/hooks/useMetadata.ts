@@ -126,7 +126,7 @@ export const useMetadata = (
     const controller = new AbortController()
 
     const getMetadata = async () => {
-      if (!tokenId || !network) {
+      if (!tokenId || network === undefined) {
         setMetadata(defaultMetadata)
         return
       }
@@ -134,11 +134,11 @@ export const useMetadata = (
       let tokenMetadata: TokenMetadata = { ...defaultMetadata }
 
       try {
-const tokenURI = await web3Service.tokenURI(
-  lockAddress,
-  tokenId,
-  network
-)
+        const tokenURI = await web3Service.tokenURI(
+          lockAddress,
+          tokenId,
+          network
+        )
 
         const parsed = parseDataJsonUri(tokenURI)
 
@@ -165,7 +165,7 @@ const tokenURI = await web3Service.tokenURI(
         if (!controller.signal.aborted) {
           setMetadata(tokenMetadata)
         }
-      } catch (error) {
+      } catch (error: unknown) {
         if (!controller.signal.aborted) {
           console.error(
             `Metadata error for ${lockAddress} ${tokenId} on ${network}`,
