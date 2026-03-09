@@ -134,9 +134,11 @@ export const useMetadata = (
       let tokenMetadata: TokenMetadata = { ...defaultMetadata }
 
       try {
-        const tokenURI = await web3Service.tokenURI(lockAddress,
+        const tokenURI = await web3Service.tokenURI(
+          lockAddress,
            tokenId,
-            network)
+            network
+          )
 
         const parsed = parseDataJsonUri(tokenURI)
 
