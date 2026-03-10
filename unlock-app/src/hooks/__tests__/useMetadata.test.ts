@@ -56,8 +56,6 @@ describe('safeFetchJson', () => {
       text: async () => '<html></html>',
     })
 
-    await expect(
-      safeFetchJson('https://example.com/meta')
-    ).rejects.toThrow()
+    await expect(safeFetchJson('https://example.com/meta')).rejects.toThrow()
   })
 })
