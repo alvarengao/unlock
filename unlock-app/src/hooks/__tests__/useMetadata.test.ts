@@ -1,11 +1,11 @@
 // ABOUTME: Unit tests for metadata parsing and guarded metadata fetch helpers.
 // ABOUTME: Verifies data URI decoding, JSON validation, and abort/timeout behavior.
-import { vi } from 'vitest'
+import { vi, describe, it, expect, beforeEach } from 'vitest'
 import {
   fetchWithTimeout,
   parseDataJsonUri,
   safeFetchJson,
-} from '../../hooks/useMetadata'
+} from '../useMetadata'
 
 describe('parseDataJsonUri', () => {
   it('parses base64 JSON data URI', () => {
